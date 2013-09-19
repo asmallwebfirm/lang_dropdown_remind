@@ -20,7 +20,7 @@ function lang_dropdown_remind_variable_info($options) {
     'required' => TRUE,
     'token' => TRUE,
     'localize' => TRUE,
-    'default' => t('This page is available in your preferred language. Navigate there using the language drop down menu.', array(), $options),
+    'default' => t('This page is available in your preferred language. Navigate there using <a id="trigger-langdropdown" href="#">the language drop down menu</a>.', array(), $options),
   );
 
   // Language dropdown Reminder close text.
