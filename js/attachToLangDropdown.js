@@ -42,6 +42,11 @@
             // Behavior for the "close" button.
             $('#langdropdown-reminder-close').click(function() {
               $('#langdropdown-reminder').slideUp();
+
+              // Ensure the language switcher dropdown is also gone (otherwise,
+              // it would be awkwardly stuck open with no way to close it).
+              $('#edit-lang-dropdown-select_child').css('display', '');
+
               // If a user physically clicked the "close" button, don't ever
               // display the reminder again (for this session).
               document.cookie = 'langDropdownReminded=' + maxRepeats + '; path=/';
