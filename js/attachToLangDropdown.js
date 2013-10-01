@@ -27,7 +27,7 @@
           if ($input.length !== 0 && $input.attr('value').indexOf('node') == -1) {
             // Create, insert, and display the message.
             var message = Drupal.settings.lang_dropdown_remind.messages[langOnly] || Drupal.settings.lang_dropdown_remind.messages.default;
-            var close = '<a href="#" id="langdropdown-reminder-close">' + Drupal.settings.lang_dropdown_remind.close + '</a>';
+            var close = '<a id="langdropdown-reminder-close">' + Drupal.settings.lang_dropdown_remind.close + '</a>';
             var $markup = $('<div id="langdropdown-reminder">' +
               Drupal.settings.lang_dropdown_remind.markup.replace('!message', message).replace('!close_button', close) +
               '</div>');
