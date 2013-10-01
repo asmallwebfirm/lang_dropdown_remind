@@ -66,8 +66,8 @@ function lang_dropdown_remind_form_lang_dropdown_form_alter(&$form, &$form_state
   // Properly filter and construct our settings, then attach.
   $settings = array(
     'markup' => filter_xss_admin(variable_get_value('lang_dropdown_remind_markup')),
-    'messages' => lang_dropdown_remind_get_messages(),
-    'close' => variable_get_value('lang_dropdown_remind_close'),
+    'messages' => lang_dropdown_remind_get_variables('lang_dropdown_remind_message'),
+    'close' => lang_dropdown_remind_get_variables('lang_dropdown_remind_close'),
     'repeat' => variable_get_value('lang_dropdown_remind_repeat'),
     'prependto' => variable_get_value('lang_dropdown_remind_prependto'),
   );
@@ -113,25 +113,27 @@ function lang_dropdown_remind_get_preferences() {
 }
 
 /**
- * Returns the reminder message in all languages.
+ * Returns translatable variables in all languages.
  *
+ * @param string $variable
+ *   The name of the translatable variable to return.
  * @return array
- *   An array of localized messages, keyed by the first two letters of the
- *   language code.
+ *   An array of localized variable values, keyed by the first two letters of
+ *   the language code.
  */
-function lang_dropdown_remind_get_messages() {
-  $messages = array();
+function lang_dropdown_remind_get_variables($variable) {
+  $translatables = array();
 
   // Always include something with key 'en' as a fallback in JS.
-  $messages['default'] = variable_get_value('lang_dropdown_remind_message');
+  $translatables['default'] = variable_get_value($variable);
 
   // Loop through all defined languages and add the translated message.
   foreach (language_list() as $lang => $language) {
-    if ($message = i18n_variable_get('lang_dropdown_remind_message', $lang)) {
+    if ($value = i18n_variable_get($variable, $lang)) {
       $lang = substr($lang, 0, 2);
-      $messages[$lang] = filter_xss_admin($message);
+      $translatables[$lang] = filter_xss_admin($value);
     }
   }
 
-  return $messages;
+  return $translatables;
 }
