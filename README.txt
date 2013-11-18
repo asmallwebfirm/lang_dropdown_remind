@@ -72,6 +72,46 @@ and you know what you are doing (e.g. you are a themer).
 
 ---------------------------------------
 
+### For themers/developers
+
+If you'd like to customize any of the interaction involved with the reminder via
+custom JavaScript in your theme, the custom event 'lang_dropdown_remind_ready'
+can be bound to in order to know exactly when/if the reminder will be displayed.
+It is triggered directly before the remider is displayed with the slideDown
+jQuery effect.
+
+Example usage would be to add a dynamic padding to the top of the <body> of your
+site if you want to set the reminder to be position: fixed and always stickied
+to the top of the page. The padding-top would avoid the reminder overpallong the
+content of the page at all. Your theme code might look like this:
+
+JAVASCRIPT:
+  (function( $ ) {
+    $(Drupal.settings.lang_dropdown_remind.prependto).bind('lang_dropdown_remind_ready', function(){
+      var $reminder = $('#langdropdown-reminder');
+      var $body = $('body');
+      var push = parseInt($body.css('margin-top'));
+      var bodyStyle = $body.attr('style');
+      // If we have an admin menu, remove position: fixed
+      if (push > 0) {
+        $reminder.css('position', 'absolute');
+        $reminder.css('top', push);
+      }
+      $body.animate({
+        paddingTop: "+=" + $reminder.height()
+      }, 400);
+    });
+  })(jQuery);
+
+CSS:
+  #langdropdown-reminder {
+    position:fixed;
+    top: 0;
+    z-index:900;
+  }
+
+---------------------------------------
+
 ### Reporting issues and contributing
 
 Any issues should be reported to the drupal.org issue queue for this module:

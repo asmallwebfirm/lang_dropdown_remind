@@ -34,7 +34,11 @@
               '</div>');
             $markup.hide();
             $(Drupal.settings.lang_dropdown_remind.prependto).prepend($markup);
-            $('#langdropdown-reminder').delay(750).slideDown();
+            // Triggering a custom event that can be used for custom interaction
+            // in a theme.
+            $(Drupal.settings.lang_dropdown_remind.prependto).trigger('lang_dropdown_remind_ready');
+
+            $('#langdropdown-reminder').slideDown();
 
             // Allow something to trigger opening of the language dropdown.
             $('#trigger-langdropdown').click(function() {$('#edit-lang-dropdown-select_child').toggle();});
