@@ -66,6 +66,14 @@ function lang_dropdown_remind_variable_info($options) {
     'default' => '#page',
   );
 
+  // Boolean to determine whether or not to use the high-performance callback.
+  $variables['lang_dropdown_remind_high_performance'] = array(
+    'title' => t('Use high-performace callback'),
+    'description' => t('Uses a high-performance method to determine user language preference; may not work on all Drupal installations.'),
+    'default' => FALSE,
+    'type' => 'boolean',
+  );
+
   return $variables;
 }
 
