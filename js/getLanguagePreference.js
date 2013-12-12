@@ -24,7 +24,7 @@ Drupal.getLanguagePreference = function (async) {
     // Perform a request for parsed accept-language header data.
     var ajaxAsync = (typeof async === 'boolean') ? async : true;
     jQuery.ajax({
-      url: "/i18n/ajax/preferences",
+      url: Drupal.settings.getLanguagePreferencePath,
       async: ajaxAsync,
       success: function (data) {
         preference = data[1] || 'und';
