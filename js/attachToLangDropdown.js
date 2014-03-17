@@ -21,7 +21,8 @@
 
         // We care if the language preference and document language don't match.
         if (docLang.indexOf(langOnly) == -1) {
-          var $input = $('#lang-dropdown-form input[name^="' + langOnly + '"]');
+          // Note: lang_dropdown 1.x uses the former while 2.x uses the latter.
+          var $input = $('#lang-dropdown-form input[name^="' + langOnly + '"], #lang_dropdown_form_language input[name^="' + langOnly + '"]');
 
           // Furthermore, we only care if an appropriate translation exists.
           if ($input.length !== 0 && $input.attr('value').indexOf('node') == -1) {
