@@ -48,6 +48,7 @@ function lang_dropdown_remind_permission() {
  */
 function lang_dropdown_remind_json_deliver($page_callback_result) {
   drupal_add_http_header('Content-Type', 'application/json; charset=utf-8');
+  drupal_add_http_header('Vary', 'Accept-Language');
   print drupal_json_encode($page_callback_result);
   ajax_footer();
 }

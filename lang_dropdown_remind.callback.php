@@ -14,5 +14,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/bootstrap.inc';
 require_once getcwd() . '/lang_dropdown_remind.module';
 
 header('Content-Type: application/json; charset=utf-8');
+header('Vary: Accept-Language');
 print json_encode(lang_dropdown_remind_get_preferences());
 exit;
