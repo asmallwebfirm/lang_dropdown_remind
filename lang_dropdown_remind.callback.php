@@ -15,5 +15,8 @@ require_once getcwd() . '/lang_dropdown_remind.module';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Vary: Accept-Language');
+header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 print json_encode(lang_dropdown_remind_get_preferences());
 exit;

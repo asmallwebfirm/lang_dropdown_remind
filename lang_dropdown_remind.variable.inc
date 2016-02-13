@@ -28,7 +28,7 @@ function lang_dropdown_remind_variable_info($options) {
     'title' => t('Reminder close text', array(), $options),
     'description' => t('Text used on the button that closes out the reminder message.', array(), $options),
     'type' => 'string',
-    'required' => TRUE,
+    'required' => FALSE,
     'token' => TRUE,
     'localize' => TRUE,
     'default' => '&#10006;',

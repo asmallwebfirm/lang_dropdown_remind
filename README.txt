@@ -1,7 +1,7 @@
 # Language Switcher Reminder
 
-This module is an add-on to the Language Switcher Dropdown module; it provides
-users with a client-side reminder that the content they're currently viewing is
+This module helps users learn your language navigation system; it provides them
+with a client-side reminder that the content they're currently viewing is
 available in their preferred language as configured in their browser.
 
 ---------------------------------------
@@ -19,17 +19,17 @@ available in their preferred language as configured in their browser.
 
 ### Requirements
 
-* Language Switcher Dropdown: https://drupal.org/project/lang_dropdown
 * Variable (7.x-2.x): https://drupal.org/project/variable
 * i18n Variable: https://drupal.org/project/i18n
+* Optional: Language Switcher Dropdown: https://drupal.org/project/lang_dropdown
 
 ---------------------------------------
 
 ### Installation and minimum configuration instructions
 
 1. Download and enable this module and all of its dependencies, in particular,
-   ensure that Language Switcher Dropdown is already enabled, configured, and
-   placed to your liking.
+   ensure that either you've placed the core locale language block or you've
+   configured and placed the Language Switcher Dropdown.
 2. Ensure that your theme does not strip standard language metadata from the
    HTML tag on your site. Check your main html.tpl.php file and ensure that, for
    HTML5 themes, a "lang" attribute exists and for XHTML themes, ensure that an
@@ -38,7 +38,7 @@ available in their preferred language as configured in their browser.
    the reminder limit above 0 (for example 3).
    
 At this point, you should see the reminder message on pages with translated
-content when the language switcher dropdown is shown and there is a mismatch
+content when your language switching mechanism is shown and there is a mismatch
 between page language and browser preference.
 
 ---------------------------------------

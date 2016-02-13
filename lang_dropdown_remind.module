@@ -77,15 +77,45 @@ function lang_dropdown_remind_preprocess_html(&$vars) {
 }
 
 /**
+ * Core Language Switcher.
+ *
+ * Implements hook_block_view_ID_alter().
+ */
+function lang_dropdown_remind_block_view_locale_language_alter(&$data, $block) {
+  if (is_array($data['content'])) {
+    $attached = &$data['content']['#attached'];
+    $attached = array_merge_recursive((array) $attached, lang_dropdown_remind_get_js());
+  }
+  // Modify render array of this block to ensure we can attach JS.
+  else {
+    $content = $data['content'];
+    unset($data['content']);
+    $data['content'] = array(
+      '#markup' => $content,
+      '#attached' => lang_dropdown_remind_get_js(),
+    );
+  }
+}
+
+/**
+ * Language Switcher Dropdown (lang_dropdown).
+ *
  * Implements hook_form_FORM_ID_alter().
  */
 function lang_dropdown_remind_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id) {
-  // For our mutual convenience...
   $attached = &$form['lang_dropdown_select']['#attached'];
+  $attached = array_merge_recursive((array) $attached, lang_dropdown_remind_get_js());
+}
 
-  // Attach our JavaScript to the request.
-  $path = drupal_get_path('module', 'lang_dropdown_remind');
-  $attached['js'][] = $path . '/js/attachToLangDropdown.js';
+/**
+ * Returns an array of custom JS scripts and settings.
+ *
+ * @return array
+ *  An array of JS files/settings.
+ */
+function lang_dropdown_remind_get_js() {
+  $attached['library'][] = array('system', 'jquery.cookie');
+  $attached['js'][] = drupal_get_path('module', 'lang_dropdown_remind') . '/js/attachToLangDropdown.js';
 
   // Properly filter and construct our settings, then attach.
   $settings = array(
@@ -99,6 +129,8 @@ function lang_dropdown_remind_form_lang_dropdown_form_alter(&$form, &$form_state
     'type' => 'setting',
     'data' => array('lang_dropdown_remind' => $settings),
   );
+
+  return $attached;
 }
 
 /**

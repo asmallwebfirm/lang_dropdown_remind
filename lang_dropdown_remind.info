@@ -4,8 +4,9 @@ package = Multilingual
 core = 7.x
 configure = admin/config/user-interface/language-switcher-reminder
 
-dependencies[] = lang_dropdown
 dependencies[] = variable
+dependencies[] = i18n
 dependencies[] = i18n_variable
+recommends[] = lang_dropdown
 
 scripts[] = js/getLanguagePreference.js
